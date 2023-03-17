@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductServiceService } from './product-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CrudFakeAPIs';
+
+  products:any[] = [];
+  constructor(private productService: ProductServiceService){}
+
+  ngOnInit(){
+    this.productService.getProducts().subscribe(products=>{
+      this.products = products;
+    });
+  }
 }
